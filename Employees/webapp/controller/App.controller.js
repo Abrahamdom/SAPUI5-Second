@@ -15,28 +15,13 @@ sap.ui.define([
             //Con la vista del controlador, obtenemos el modelo i18n para después obtener los recursos del modelo.
             var i18nBundle = oView.getModel("i18n").getResourceBundle();
 
-            //Creamos el objeto JSON, el cual contrandrá los datos para mostrarlos en la interfaz de usuario.
-            var oJSON = {
-                employeeId : "123456",
-                countryKey : "UK",
-                listCountry : [
-                    {
-                        key : "US",
-                        text : i18nBundle.getText("countryUS")
-                    },
-                    {
-                        key : "UK",
-                        text : i18nBundle.getText("countryUK")
-                    },
-                    {
-                        key : "ES",
-                        text : i18nBundle.getText("countryES")
-                    }
-                ]
-            }
-
-            //Del modelo que creamos, le establecemos los datos del objeto oJSON
-            oJSONModel.setData(oJSON);
+            //Usamos el método loadData para cargar los datos desde el fichero Employees.json y ponemos bAsync con false para esperar hasta que se cargan los datos en el fichero
+            //loadData(sURL: string, oParameters?: string | object, bAsync?: boolean, sType?: string, bMerge?: boolean, bCache?: boolean, mHeaders?: object);
+            oJSONModel.loadData("./localService/mockdata/Employees.json","",false);
+            //Para ver si los datos se han cargado correctamente podemos mostrarlos en la consola
+            oJSONModel.attachRequestCompleted(function (oEventModel){
+                console.log(JSON.stringify(oJSONModel.getData()));
+            });            
             //Usamos la estancia de la vista para vincular el modelo oJSONModel, que ya tiene dentro del modelo los datos del objeto oJSON
             oView.setModel(oJSONModel);
 
