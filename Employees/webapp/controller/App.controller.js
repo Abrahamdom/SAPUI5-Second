@@ -7,7 +7,43 @@ sap.ui.define([
 	function (Controller) {
 		"use strict";
 
-		var Main = Controller.extend("abrahamgroup.Employees.controller.App", {});
+        function onInit(){
+            //Creamos un nuevo modelo JSON
+            var oJSONModel = new sap.ui.model.json.JSONModel();
+            //Obtenemos la intancia de la vista del controlador
+            var oView = this.getView();
+            //Con la vista del controlador, obtenemos el modelo i18n para después obtener los recursos del modelo.
+            var i18nBundle = oView.getModel("i18n").getResourceBundle();
+
+            //Creamos el objeto JSON, el cual contrandrá los datos para mostrarlos en la interfaz de usuario.
+            var oJSON = {
+                employeeId : "123456",
+                countryKey : "UK",
+                listCountry : [
+                    {
+                        key : "US",
+                        text : i18nBundle.getText("countryUS")
+                    },
+                    {
+                        key : "UK",
+                        text : i18nBundle.getText("countryUK")
+                    },
+                    {
+                        key : "ES",
+                        text : i18nBundle.getText("countryES")
+                    }
+                ]
+            }
+
+            //Del modelo que creamos, le establecemos los datos del objeto oJSON
+            oJSONModel.setData(oJSON);
+            //Usamos la estancia de la vista para vincular el modelo oJSONModel, que ya tiene dentro del modelo los datos del objeto oJSON
+            oView.setModel(oJSONModel);
+
+
+        };  
+            
+        var Main = Controller.extend("abrahamgroup.Employees.controller.App", {});
         
         //Prototipamos la función onValidate dentro del main y la regresamos con return.
         Main.prototype.onValidate = function() {
@@ -27,5 +63,9 @@ sap.ui.define([
                                             this.byId("slCountry").setVisible(false);
                                         }
                                     };
+
+        //Prototipamos la funcion onInit dentro de Main
+        Main.prototype.onInit = onInit;
+
         return Main;
 	});
