@@ -15,15 +15,55 @@
                             <Label id="labelEmployee" text="{i18n>labelEmployee}" labelFor="inputEmployee" class="sapUiSmallMargin"/>
                             <!--El evento liveChange se dispara cuando el valor de entrada es cambiado por el usuario-->
                             <!--Con value definimos el valor del control-->
-                            <Input id="inputEmployee" value="{/employeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd" liveChange="onValidate"/>
+                            <Input id="inputEmployee" value="{/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd" liveChange="onValidate"/>
                             <Label id="labelCountry" labelFor="slCountry" text="{i18n>labelCountry}" visible="false" class="sapUiSmallMargin"/>
                             <!--Con selectedKey definimos la llave del objeto seleccionado y con items agregamos el arreglo de los n numero de datos-->
-                            <Select id="slCountry" forceSelection="false" selectedKey="{/countryKey}" items="{/listCountry}" visible="false">
+                            <Select id="slCountry" forceSelection="false" selectedKey="{/CountryKey}" items="{/ListCountry}" visible="false">
                                 <items>
                                     <!--Usamos key y text para mostrar los datos del modelo oJSONModel que está en el controlador-->
-                                    <core:Item key="{key}" text="{text}"/>
+                                    <core:Item key="{Key}" text="{Text}"/>
                                 </items>
                             </Select>
+                        </HBox>
+                        <HBox>
+                            <Panel>
+                                <!--Creamos una tabla la cual contendrá items, desde el fichero Employees.json (items="{/Employees}"-->
+                                <Table id="tableEmployee" items="{/Employees}">
+                                    <columns>
+                                        <Column>
+                                            <header>
+                                                <Label text="{i18n>tableId}"/>
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="{i18n>tableName}"/>
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="{i18n>tableCountry}"/>
+                                            </header>
+                                        </Column>
+                                        <Column>
+                                            <header>
+                                                <Label text="{i18n>tableCity}"/>
+                                            </header>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <!--Aquí es donde establecemos los datos para que se visualicen en la interfaz de usuario-->
+                                                <Label text="{EmployeeID}"/>
+                                                <Label text="{LastName}, {FirstName}"/>
+                                                <Label text="{Country}"/>
+                                                <Label text="{City}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </Panel>
                         </HBox>
                     </content>
 				</Page>

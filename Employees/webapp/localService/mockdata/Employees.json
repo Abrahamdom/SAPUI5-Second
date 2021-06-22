@@ -1,21 +1,21 @@
 {
-    "employeeId": "1234",
-    "countryKey": "UK",
-    "listCountry": [
+    "EmployeeId": "1234",
+    "CountryKey": "UK",
+    "ListCountry": [
         {
-            "key": "US",
-            "text": "United States"
+            "Key": "US",
+            "Text": "United States"
         },
         {
-            "key": "UK",
-            "text": "United Kindom"
+            "Key": "UK",
+            "Text": "United Kindom"
         },
         {
-            "key": "ES",
-            "text": "Spain"
+            "Key": "ES",
+            "Text": "Spain"
         }
     ],
-    "employees": [
+    "Employees": [
         {
             "EmployeeID": "1",
             "LastName": "García Lopez",
