@@ -1,10 +1,12 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller"
+        "sap/ui/core/mvc/Controller",
+        "sap/ui/model/Filter",
+        "sap/ui/model/FilterOperator"
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (Controller) {
+	function (Controller, Filter, FilterOperator) {
 		"use strict";
 
         function onInit(){
@@ -26,7 +28,40 @@ sap.ui.define([
             oView.setModel(oJSONModel);
 
 
-        };  
+        };
+        
+        function onFilter(){
+            //La recomendación es ir trabajando con los modelos, así que obtenemos los datos de los modelos vinculados en la vista y trabajamos con esos valores.
+            //Para obtener los datos
+            var oJSON = this.getView().getModel().getData();
+            var filters = [];
+
+            if(oJSON.EmployeeId !== ""){
+                //Agregamos al arreglo filter los datos que son iguales al modelo JSON.EmployeeId, comparandolos con los datos dentro del fichero Employees.json
+                //new sap.ui.model.Filter(vFilterInfo, vOperator?, vValue1?, vValue2?)
+                filters.push(new Filter("EmployeeID", FilterOperator.EQ, oJSON.EmployeeId))
+            };
+
+            if(oJSON.CountryKey !== ""){
+                filters.push(new Filter("Country", FilterOperator.EQ, oJSON.CountryKey))
+            };
+
+            //Obtengo la vista y por el identificador obtengo la tabla
+            var oList = this.getView().byId("tableEmployee");
+            //getBinding -> devuelve el enlace al que pertenece éste contexto
+            //De la tabla obtengo la propiedad "items" para agregar el filtro
+            var oBinding = oList.getBinding("items");
+            //Al método filter le pasamos el arreglo filters
+            oBinding.filter(filters);
+
+        };
+
+        function onClearFilter(){
+            //Obtengo el modelo y le asigno datos en blanco
+            var oModel = this.getView().getModel();
+            oModel.setProperty("/EmployeeId", "");
+            oModel.setProperty("/CountryKey", "");
+        };
             
         var Main = Controller.extend("abrahamgroup.Employees.controller.App", {});
         
@@ -51,6 +86,8 @@ sap.ui.define([
 
         //Prototipamos la funcion onInit dentro de Main
         Main.prototype.onInit = onInit;
+        Main.prototype.onFilter = onFilter;
+        Main.prototype.onClearFilter = onClearFilter;
 
         return Main;
 	});

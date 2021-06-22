@@ -1,7 +1,11 @@
 {
-    "EmployeeId": "1234",
-    "CountryKey": "UK",
+    "EmployeeId": "",
+    "CountryKey": "",
     "ListCountry": [
+        {
+            "Key": "",
+            "Text": "--------------"
+        },
         {
             "Key": "US",
             "Text": "United States"
@@ -20,7 +24,7 @@
             "EmployeeID": "1",
             "LastName": "García Lopez",
             "FirstName": "María",
-            "Country": "Spain",
+            "Country": "ES",
             "City": "Madrid",
             "PostalCode": "28021",
             "Orders": [
@@ -40,7 +44,7 @@
             "EmployeeID": "2",
             "LastName": "Fernandez Díaz",
             "FirstName": "Pedro",
-            "Country": "Spain",
+            "Country": "ES",
             "City": "Granada",
             "PostalCode": "18008",
             "Orders": [
@@ -60,7 +64,7 @@
             "EmployeeID": "3",
             "LastName": "Davolio",
             "FirstName": "Nancy",
-            "Country": "USA",
+            "Country": "US",
             "City": "Seattle",
             "PostalCode": "98052",
             "Orders": [
@@ -80,7 +84,7 @@
             "EmployeeID": "4",
             "LastName": "Peacock",
             "FirstName": "Margaret",
-            "Country": "USA",
+            "Country": "US",
             "City": "Redmond",
             "PostalCode": "08025",
             "Orders": [

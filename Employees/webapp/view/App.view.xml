@@ -13,17 +13,18 @@
                         <HBox>
                             <!--Usamos un control label junto con un control input, se enlazan con la propiedad "labelFor"-->
                             <Label id="labelEmployee" text="{i18n>labelEmployee}" labelFor="inputEmployee" class="sapUiSmallMargin"/>
-                            <!--El evento liveChange se dispara cuando el valor de entrada es cambiado por el usuario-->
                             <!--Con value definimos el valor del control-->
-                            <Input id="inputEmployee" value="{/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd" liveChange="onValidate"/>
-                            <Label id="labelCountry" labelFor="slCountry" text="{i18n>labelCountry}" visible="false" class="sapUiSmallMargin"/>
+                            <Input id="inputEmployee" value="{/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>
+                            <Label id="labelCountry" labelFor="slCountry" text="{i18n>labelCountry}" class="sapUiSmallMargin"/>
                             <!--Con selectedKey definimos la llave del objeto seleccionado y con items agregamos el arreglo de los n numero de datos-->
-                            <Select id="slCountry" forceSelection="false" selectedKey="{/CountryKey}" items="{/ListCountry}" visible="false">
+                            <Select id="slCountry" forceSelection="false" selectedKey="{/CountryKey}" items="{/ListCountry}" class="sapUiTinyMarginEnd">
                                 <items>
                                     <!--Usamos key y text para mostrar los datos del modelo oJSONModel que está en el controlador-->
                                     <core:Item key="{Key}" text="{Text}"/>
                                 </items>
                             </Select>
+                            <Button id="btnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiTinyMarginEnd"/>
+                            <Button id="btnClearFilter" text="{i18n>btnClearFilter}" icon="sap-icon://clear-filter" press="onClearFilter" class="sapUiSmallMarginEnd"/>
                         </HBox>
                         <HBox>
                             <Panel>
