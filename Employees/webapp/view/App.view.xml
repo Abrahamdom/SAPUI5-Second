@@ -53,7 +53,8 @@
                                         </Column>
                                     </columns>
                                     <items>
-                                        <ColumnListItem>
+                                        <!--La propiedad type define la indicación visual y el comportamiento de los elementos de la vista-->
+                                        <ColumnListItem type="Active" press="showPostalCode">
                                             <cells>
                                                 <!--Aquí es donde establecemos los datos para que se visualicen en la interfaz de usuario-->
                                                 <Label text="{EmployeeID}"/>
